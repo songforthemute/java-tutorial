@@ -21,7 +21,7 @@
     - [Oracle Official Site](https://www.oracle.com/kr/java/technologies/downloads) - Oracle 계정 필요
     - [Homebrew Official Docs](https://formulae.brew.sh/cask/oracle-jdk)
   - **Open JDK**
-    - Azul Zulu
+    - **Azul Zulu**
       - [Azul Official Site](https://www.azul.com/downloads/?package=jdk#zulu)
       - [Homebrew Official Docs](https://formulae.brew.sh/cask/zulu#default)
       
@@ -29,7 +29,7 @@
 - **_References_**
   -  [[MacOS] Zulu JDK17 설치하는 방법 (Monterey 대응)](https://freedeveloper.tistory.com/198)
   -  [LINE의 OpenJDK 적용기: 호환성 확인부터 주의 사항까지](https://engineering.linecorp.com/ko/blog/line-open-jdk)
-  -  [주요 4개 Oracle Java 대한과 비교](https://www.azul.com/ko-kr/java-alternative-vendors/)
+  -  [주요 4개 Oracle Java 대안과 비교](https://www.azul.com/ko-kr/java-alternative-vendors/)
 
 ---
 
@@ -57,3 +57,5 @@
     - ```--rebase``` 로컬 리포지토리에서 현재 브랜치에 존재하던 변경점을 임시로 저장해두었다가, 원격 리포지토리에서 가져온 변경 사항을 현재 브랜치의 앞부분에 새로운 기반(rebase)으로 적용시킨 뒤, 앞서 임시로 저장한 로컬의 변경점을 다시 적용
     - ```--squash``` 원격 저장소 \<remote>의 <branch>에서 가져온 변경 사항을 현재 브랜치에 하나의 커밋으로 압축하여 추가
     - ```--no-squash``` 원격 저장소 \<remote>의 \<branch>에서 가져온 변경 사항을 개별 커밋으로 유지하여 추가
+
+---

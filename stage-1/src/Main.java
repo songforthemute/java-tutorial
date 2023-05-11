@@ -7,6 +7,10 @@ public class Main {
     Counter.increase();
     Counter.increase();
     System.out.println(Counter.value);
+
+    // 연습문제
+    Q1.exec();
+    Q2.exec();
   }
 }
 

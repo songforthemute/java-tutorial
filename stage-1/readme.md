@@ -7,6 +7,7 @@
 - [소스 코드 개요](#소스-코드-개요)
 - [변수와 네이밍](#변수와-네이밍)
 - [자료형](#자료형)
+- [형변환과 final](#형변환과-final)
 
 ---
 
@@ -17,6 +18,7 @@
 public class HelloWorld {
 
   public static void main(String[] args) {
+
     System.out.println("Hello World");
   }
 }
@@ -28,7 +30,9 @@ public class HelloWorld {
     ```java
     // Counter.java
     public class Counter {
+  
         public static int value = 0;
+  
         public static void increase() {
             value++;
         }
@@ -36,7 +40,9 @@ public class HelloWorld {
     
     // Main.java
     public class Main {
+  
       public static void main(String[] args){
+  
         System.out.println(Counter.value); // 0
         Counter.increase();
         Counter.increase();
@@ -150,13 +156,153 @@ public class HelloWorld {
       sb.subString(0, 4); // "hell", String 자료형의 메서드와 동일
       ```
 
+
+- `Array`
+    - ex 1. `int[] odds = {1, 3, 5, 7, 9};` 배열 리터럴 선언
+    - ex 2. `String[] weeks = new String[7];` 배열의 길이는 불변
+    - `arr.length` 배열의 길이
+        - cf. `ArrayIndexOutOfBoundsException` 배열의 길이를 벗어나는 값 취득 시도 시 발생하는 에러
+
+
 - `List`
+    - 배열과 유사하나, 길이가 가변적
+    - cf. `ArrayList`, `Vector`, `LinkedList` 등의 List 인터페이스 구현체 존재
+        ```java
+        import java.util.ArrayList; // ArrayList를 사용하기 위한 클래스 import
+        import java.util.Arrays; // Array를 ArrayList로 변환하기 위한 클래스 import
+        import java.util.Comparator; // ArrayList를 정렬하기 위한 클래스 import
+      
+        public class Example {
+      
+            public static main(String[] args) {
+      
+                ArrayList<String> fruits = new ArrayList<>(); // J2SE 5.0 이후로 제네릭 사용 권고
+                // 제네릭 미사용시 ArrayList에 추가되는 객체는 Object 타입으로 인식하고,
+                // 이 경우, ArrayList 내 원소 취득 시 타입캐스팅 필요
+      
+                fruits.add("apple"); // 원소 삽입
+                fruits.add("banana");
+                fruits.add(1, "peach"); // 위치 지정 원소 삽입
+      
+                System.out.println(fruits.get(1)); // "peach"
+                System.out.println(fruits.size()); // 3
+                System.out.println(fruits.contains("apple")); // true
+                System.out.println(fruits.remove("banana")); // 객체 삭제 후 결과 boolean 반환, true
+                // System.out.println(fruits.contains(2)); // 항목 삭제 후 결과 항목 반환, "banana"
+      
+                String[] numArr = {"456", "789", "123"};
+                ArrayList<String> numList = new ArrayList<>(Arrays.asList(numArr)); // 리스트 객체로 변환
+                // == new ArrayList<>(Arrays.asList("456", "789", "123"));
+      
+                System.out.println(numList); // ["456", "789", "123"]
+                System.out.println(String.join(",", numList)); // "456,789,123"
+      
+                numList.sort(Comparator.naturalOrder()); // 오름차순 정렬
+                // Comparator.reverseOrder() // 내림차순 정렬
+                System.out.println(numList); // ["123", "456", "789"]
+            }
+        }
+        ```
 
 
 - `Map`
+    - key - value 관계 자료구조, 순차적이지 않으며 key를 통해 value 접근
+    - == Associative array, Hash
+    - cf. `HashMap`, `LinkedHashMap`, `TreeMap` 등의 Map 인터페이스 구현체 존재
+        - `LinkedHashMap` 입력된 순서대로 데이터를 저장
+        - `TreeMap` 입력된 key의 오름차순 순서대로 데이터를 저장
+
+
+- `HashMap`
+    ```java
+    import java.util.HashMap;
+    
+    public class Example {
+  
+      public static void main(String[] args){
+  
+        HashMap<String, String> map = new HashMap<>(); // 제네릭 사용
+        map.put("human", "사람"); // 할당
+        map.put("fruit", "과일");
+        
+        System.out.println(map.keySet()); // [human, fruit], Set 타입 반환
+  
+        System.out.println(map.get("human")); // "사람"
+        System.out.println(map.get("javascript")); // null
+  
+        System.out.println(map.getOrDefault("typescript", "타입스크립트")); // "타입스크립트", null이 아닌 디폴트 값 반환
+        System.out.println(map.containsKey("fruit")); // true
+        System.out.println(map.remove("people")); // "사람", 항목 삭제 후 key에 해당하는 value 반환
+  
+      }
+    } 
+    ```
 
 
 - `Set`
+    - 순서가 없으므로 인덱스를 이용한 접근 불가
+    - cf. `HashSet`, `TreeSet`, `LinkedHashSet` 등의 Set 인터페이스 구현체 존재
+        - `TreeSet` 오름차순으로 값을 정렬해 저장
+        - `LinkedHashSet` 입력한 순서대로 값을 정렬해 저장
+    ```java
+    import java.util.Arrays;
+    import java.util.HashSet;
+  
+    public class Example {
+  
+        public static void main(String[] args){
+  
+            HashSet<String> set = new HashSet<>(Arrays.asList("H", "e", "l", "l", "o"));
+            System.out.println(set); // [e, H, l, o]
+  
+            // 제네릭으로 int 사용 시, int의 Wrapper 클래스 Integer 사용
+            HashSet<Integer> s1 = new HashSet<>(Arrays.asList(1, 2, 3, 4));
+            HashSet<Integer> s2 = new HashSet<>(Arrays.asList(3, 4, 5, 6));
+  
+            // 교집합
+            HashSet<Integer> intersection = new HashSet<>(s1);
+            intersection.retainAll(s2);
+            System.out.println(intersection); // [3, 4]
+  
+            // 합집합
+            HashSet<Integer> union = new HashSet<>(s1);
+            union.addAll(s2);
+            System.out.println(union); // [1, 2, 3, 4, 5, 6]
+  
+            // 차집합
+            HashSet<Integer> subtract = new HashSet<>(s1);
+            subtract.removeAll(s2);
+            System.out.println(subtract); // [1, 2]
+ 
+            subtract.add(3); // 값 추가
+            subtract.addAll(4, 5); // 여러 값 추가
+            subtract.remove(5); // 값 제거
+        }
+    }
+    ```
+
+
+- `enum`
+    ```java
+    public class Example {
+  
+        enum CoffeeType {
+            AMERICANO,
+            CAFELATTE,
+            BLACKTEA
+        }
+  
+        public static void main(String[] args){
+  
+            System.out.println(CoffeeType.AMERICANO); // AMERICANO
+            System.out.println(CoffeeType.CAFELATTE); // CAFELATTE
+            System.out.println(CoffeeType.BLACKTEA); // BLACKTEA
+  
+            for(CoffeeType type: CoffeeType.values()) { // CoffeeType.values(): CoffeeType의 배열 반환 
+                System.out.println(type); // AMERICANO CAFELATTE BLACKTEA
+            }
+    }
+    ```
 
 
 - 커스텀 자료형
@@ -166,3 +312,56 @@ public class HelloWorld {
   }
   Human Lee; // Human 자료형의 인스턴스 Lee 생성
   ```
+
+---
+
+### 형변환과 final
+
+**형변환**
+
+```java
+public class Example {
+
+  public static void main(String[] args) {
+
+    String num = "123";
+
+    // 문자열 -> 정수
+    int n = Integer.parseInt(num); // 123
+
+    // 정수 -> 문자열
+    String str1 = String.valueOf(n); // "123"
+    String str2 = Integer.toString(n); // "123"
+
+    String pi = "3.14"; // 실수 형태 문자열 -> 정수: NumberFormatException 에러
+
+    // 문자열 -> 실수
+    double d = Double.parseDouble(pi); // 3.14
+
+    // 실수 -> 정수 // 반대는 캐스팅 X
+    int n2 = (int) d; // 3
+  }
+}
+```
+
+**final**
+
+- 자료형에 값을 단 한 번만 설정할 수 있게 강제하는 키워드
+- 즉, 상수 선언
+    - 변수 : 재할당 불가, 단 한 번만 할당
+    - 메서드 : 재정의 불가
+    - 클래스 : 확장 불가
+    - cf. Unmodifiable List
+        - 리스트의 경우 final로 선언 시, 리스트에 값을 추가 및 삭제는 가능, 식별자에 재할당만 불가능
+        - 값 추가 및 삭제도 불가능하게 동결하려는 경우, `List.of(collection)` 사용
+    ```java
+    final int myNumber = 10;
+    
+    public final void myMethod() {
+      System.out.println("This is a final method.");
+    }
+    
+    public final class MyClass {
+      // ...
+    }
+    ```

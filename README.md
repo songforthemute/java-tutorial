@@ -68,6 +68,7 @@
 
 - `Command + Option + Shift + L` 현재 파일 코드 포매팅
 
+
 - **_References_**
     - [가장 많이 사용되는 IntelliJ IDEA 단축키 15개](https://blog.jetbrains.com/ko/2020/03/11/top-15-intellij-idea-shortcuts_ko/)
     - [저평가된 IntelliJ IDEA 단축키 소개](https://blog.jetbrains.com/ko/idea/2022/11/top-underrated-shortcuts/)

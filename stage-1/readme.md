@@ -8,6 +8,7 @@
 - [변수와 네이밍](#변수와-네이밍)
 - [자료형](#자료형)
 - [형변환과 final](#형변환과-final)
+- [러닝 포인트](#러닝-포인트)
 
 ---
 
@@ -351,17 +352,59 @@ public class Example {
     - 변수 : 재할당 불가, 단 한 번만 할당
     - 메서드 : 재정의 불가
     - 클래스 : 확장 불가
-    - cf. Unmodifiable List
-        - 리스트의 경우 final로 선언 시, 리스트에 값을 추가 및 삭제는 가능, 식별자에 재할당만 불가능
-        - 값 추가 및 삭제도 불가능하게 동결하려는 경우, `List.of(collection)` 사용
+- cf. Unmodifiable List
+    - 리스트의 경우 final로 선언 시, 리스트에 값을 추가 및 삭제는 가능, 식별자에 재할당만 불가능
+    - 값 추가 및 삭제도 불가능하게 동결하려는 경우, `List.of(collection)` 사용
+
     ```java
     final int myNumber = 10;
     
     public final void myMethod() {
-      System.out.println("This is a final method.");
+    System.out.println("This is a final method.");
     }
     
     public final class MyClass {
-      // ...
+    // ...
     }
     ```
+
+  
+---
+
+### 러닝 포인트
+
+- 배열 내 요소 순회하기 (Q1)
+    ```java
+    static public double getAverage(int... nums) {
+       double sum = 0;
+  
+       for (Integer var : nums) {
+           sum += var;
+       }
+    
+       return sum / nums.length;
+    }
+    ```
+    - `nums`: `int[]`
+    - `...`: 'varargs', **가변 인수**를 나타내는 다중 변수 선언 연산자
+    - 가변 인수는 실제 배열은 아니며, 블록 내에서 **배열처럼** 동작
+        - 자바스크립트 함수 선언문의 유사 배열 객체인 `arguments` 이터러블과 유사
+        - 실제 배열이 아니므로, `sort()` 등의 배열 메서드 사용 불가
+        - 실제 배열이 아니므로, `length` 속성 없음
+    - 실제 배열을 사용하는 것보다 느릴 수 있음
+
+
+- 자바스크립트와 같은 삼항 연산자 사용 가능 (Q2)
+
+
+- static 컨텍스트에서 non-static 메서드 참조 불가 (Q3)
+    - non-static 메서드는 클래스의 인스턴스 소속
+    - static 메서드는 클래스 자체 소속
+    - static 컨텍스트에서 non-static 메서드를 호출 시, 해당 컨텍스트에 클래스의 현재 인스턴스에 대한 정보가 없으므로, 컴파일러는 메서드가 호출되어야 하는 클래스의 인스턴스 확인 불가능
+
+
+- 문자열 타입에서 인덱스 접근 시, 배열처럼 접근 불가 (Q4)
+    - `str.charAt(idx)` 메서드 사용
+
+
+- 자바에서 클래스의 멤버 변수에 직접 초기화나 할당 연산을 수행하는 코드는 필드 초기화 시, 혹은 생성자, 메서드 내부에서 수행 (Q5)

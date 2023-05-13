@@ -18,6 +18,7 @@ public class Main {
         Q7.exec(); // "Life is too short"
         Q8.exec(); // 80
         Q9.exec(); // [1, 2, 3, 4, 5]
+        Q10.exec(); // 가격은 4000원 입니다.
     }
 }
 

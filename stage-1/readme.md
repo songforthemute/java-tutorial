@@ -18,10 +18,10 @@
 // Main.java
 public class HelloWorld {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    System.out.println("Hello World");
-  }
+        System.out.println("Hello World");
+    }
 }
 ```
 
@@ -144,9 +144,11 @@ public class HelloWorld {
 - `StringBuilder`
     - 문자열을 추가하거나 변경할 때 사용하는 자료형
     - `strBuf.toString()` StringBuffer를 String 자료형으로 반환
-    - 문자열은 불변하므로, 문자열을 더하기 연산을 사용해 계속해서 더하는 것은 계속해서 새로운 객체가 생성되는 데 반해, StringBuffer 객체를 사용하는 것은 그렇지 않음
+    - 문자열은 불변하므로, 문자열을 더하기 연산을 사용해 계속해서 더하는 것은 계속해서 새로운 객체가 생성되는 데 반해, StringBuffer 객체를 사용하는 것은 그렇지
+      않음
     - 하지만, 자료형 자체는 StringBuffer가 더 무겁고 느리기에 문자열 변경이 빈번한 경우에 사용하는 것이 적합
-    - cf. `StringBuilder` 자료형은 StringBuffer와 유사하며 사용법도 동일하지만 성능은 보다 우수, 동기화가 고려될 필요가 없다면 적합, 그러나 멀티 스레드 환경에서는
+    - cf. `StringBuilder` 자료형은 StringBuffer와 유사하며 사용법도 동일하지만 성능은 보다 우수, 동기화가 고려될 필요가 없다면 적합, 그러나 멀티
+      스레드 환경에서는
       StringBuffer가 보다 안전
       ```java
       StringBuffer sb = new StringBuffer();
@@ -323,25 +325,25 @@ public class HelloWorld {
 ```java
 public class Example {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    String num = "123";
+        String num = "123";
 
-    // 문자열 -> 정수
-    int n = Integer.parseInt(num); // 123
+        // 문자열 -> 정수
+        int n = Integer.parseInt(num); // 123
 
-    // 정수 -> 문자열
-    String str1 = String.valueOf(n); // "123"
-    String str2 = Integer.toString(n); // "123"
+        // 정수 -> 문자열
+        String str1 = String.valueOf(n); // "123"
+        String str2 = Integer.toString(n); // "123"
 
-    String pi = "3.14"; // 실수 형태 문자열 -> 정수: NumberFormatException 에러
+        String pi = "3.14"; // 실수 형태 문자열 -> 정수: NumberFormatException 에러
 
-    // 문자열 -> 실수
-    double d = Double.parseDouble(pi); // 3.14
+        // 문자열 -> 실수
+        double d = Double.parseDouble(pi); // 3.14
 
-    // 실수 -> 정수 // 반대는 캐스팅 X
-    int n2 = (int) d; // 3
-  }
+        // 실수 -> 정수 // 반대는 캐스팅 X
+        int n2 = (int) d; // 3
+    }
 }
 ```
 
@@ -400,7 +402,8 @@ public class Example {
 - static 컨텍스트에서 non-static 메서드 참조 불가 (Q3)
     - non-static 메서드는 클래스의 인스턴스 소속
     - static 메서드는 클래스 자체 소속
-    - static 컨텍스트에서 non-static 메서드를 호출 시, 해당 컨텍스트에 클래스의 현재 인스턴스에 대한 정보가 없으므로, 컴파일러는 메서드가 호출되어야 하는 클래스의 인스턴스 확인 불가능
+    - static 컨텍스트에서 non-static 메서드를 호출 시, 해당 컨텍스트에 클래스의 현재 인스턴스에 대한 정보가 없으므로, 컴파일러는 메서드가 호출되어야 하는
+      클래스의 인스턴스 확인 불가능
 
 
 - 문자열 타입에서 인덱스 접근 시, 배열처럼 접근 불가 (Q4)
@@ -408,3 +411,6 @@ public class Example {
 
 
 - 자바에서 클래스의 멤버 변수에 직접 초기화나 할당 연산을 수행하는 코드는 필드 초기화 시, 혹은 생성자, 메서드 내부에서 수행 (Q5)
+
+
+- `enum` 타입은 내부 열거형으로, 그대로 클래스처럼 enum 타입명으로 기술 (Q10~~~~)
